@@ -6,7 +6,7 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version = 2.4.0
 
 * System dependencies
 
@@ -28,4 +28,3 @@ Things you may want to cover:
 This a simple school register.
 This is new initiative.
 >>>>>>>
-# school_register
