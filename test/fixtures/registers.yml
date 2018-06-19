@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  roll: 1
+  name: MyString
+  grade: MyString
+  std: 1
+
+two:
+  roll: 1
+  name: MyString
+  grade: MyString
+  std: 1

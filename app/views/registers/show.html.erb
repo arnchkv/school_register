@@ -1,0 +1,24 @@
+<!--p id="notice"><%= notice %></p-->
+
+<p>
+  <strong>Roll:</strong>
+  <%= @register.roll %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @register.name %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @register.grade %>
+</p>
+
+<p>
+  <strong>Std:</strong>
+  <%= @register.std %>
+</p>
+
+<%= link_to 'Edit', edit_register_path(@register) %> |
+<%= link_to 'Back', registers_path %>
