@@ -1,0 +1,946 @@
+  [1m[35m (123.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (79.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3334474969968141930)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRegisters (20180618162417)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (77.0ms)[0m  [1m[35mCREATE TABLE "registers" ("id" bigserial primary key, "roll" integer, "name" character varying, "grade" character varying(1), "std" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(3334474969968141930)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3334474969968141930)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRegisters (20180618162417)
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(3334474969968141930)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3334474969968141930)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRegisters (20180618162417)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (73.1ms)[0m  [1m[35mCREATE TABLE "registers" ("id" bigserial primary key, "roll" integer, "name" character varying, "grade" character varying(1), "std" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (33.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_registers_on_roll" ON "registers"  ("roll")[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180618162417"]]
+  [1m[35m (13.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-06-18 16:35:56.021091"], ["updated_at", "2018-06-18 16:35:56.021091"]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(3334474969968141930)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-06-18 22:06:27 +0530
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/faucon/.rvm/gems/ruby-2.4.1/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/faucon/.rvm/gems/ruby-2.4.1/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (18.4ms)
+Completed 200 OK in 100ms (Views: 54.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-18 22:06:34 +0530
+Processing by RegistersController#index as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/home/faucon/ucodes/rails/school_register/app/models/register.rb:2: syntax error, unexpected tIDENTIFIER, expecting keyword_end
+es_uniqueness_of :roll through :std
+                              ^):
+  
+app/models/register.rb:2: syntax error, unexpected tIDENTIFIER, expecting keyword_end
+app/controllers/registers_controller.rb:7:in `index'
+Started GET "/registers" for 127.0.0.1 at 2018-06-18 22:07:28 +0530
+Started GET "/registers" for 127.0.0.1 at 2018-06-18 22:07:38 +0530
+Processing by RegistersController#index as HTML
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.2ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 2137ms (Views: 2125.6ms | ActiveRecord: 4.6ms)
+
+
+Processing by RegistersController#index as HTML
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (0.8ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 57ms (Views: 50.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/registers/new" for 127.0.0.1 at 2018-06-18 22:07:45 +0530
+Processing by RegistersController#new as HTML
+  Rendering registers/new.html.erb within layouts/application
+  Rendered registers/_form.html.erb (105.9ms)
+  Rendered registers/new.html.erb within layouts/application (109.0ms)
+Completed 200 OK in 182ms (Views: 147.6ms | ActiveRecord: 9.1ms)
+
+
+Started POST "/registers" for 127.0.0.1 at 2018-06-18 22:08:03 +0530
+Processing by RegistersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xkk5hh5w/SxjALny0p5kKMAOgv2TlVGX5xFW1QG9AdFuY60wymNLXUQrWjuXOkxnUyCRknXS48NaH7abA0Szrw==", "register"=>{"roll"=>"1", "name"=>"one", "grade"=>"A", "std"=>"1"}, "commit"=>"Create Register"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRegister Exists (1.8ms)[0m  [1m[34mSELECT  1 AS one FROM "registers" WHERE "registers"."roll" = $1 LIMIT $2[0m  [["roll", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "registers" ("roll", "name", "grade", "std", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["roll", 1], ["name", "one"], ["grade", "A"], ["std", 1], ["created_at", "2018-06-18 16:38:03.225201"], ["updated_at", "2018-06-18 16:38:03.225201"]]
+  [1m[35m (23.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/registers/1
+Completed 302 Found in 66ms (ActiveRecord: 27.1ms)
+
+
+Started GET "/registers/1" for 127.0.0.1 at 2018-06-18 22:08:03 +0530
+Processing by RegistersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRegister Load (2.6ms)[0m  [1m[34mSELECT  "registers".* FROM "registers" WHERE "registers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/show.html.erb within layouts/application
+  Rendered registers/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 79ms (Views: 41.3ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/registers/1/edit" for 127.0.0.1 at 2018-06-18 22:08:05 +0530
+Processing by RegistersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRegister Load (1.0ms)[0m  [1m[34mSELECT  "registers".* FROM "registers" WHERE "registers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/edit.html.erb within layouts/application
+  Rendered registers/_form.html.erb (10.4ms)
+  Rendered registers/edit.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 66ms (Views: 57.3ms | ActiveRecord: 1.5ms)
+
+
+Started PATCH "/registers/1" for 127.0.0.1 at 2018-06-18 22:08:09 +0530
+Processing by RegistersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ug5XuBcgHt45UJNZBXVSwO0gQFmJdYfwDlmCysIS/qaeDxg5sxIgM2YJyWntjG4LGP0sXz4LMDHTmOKKMeXF1w==", "register"=>{"roll"=>"1", "name"=>"one", "grade"=>"Affgf", "std"=>"1"}, "commit"=>"Update Register", "id"=>"1"}
+  [1m[36mRegister Load (1.1ms)[0m  [1m[34mSELECT  "registers".* FROM "registers" WHERE "registers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRegister Exists (1.3ms)[0m  [1m[34mSELECT  1 AS one FROM "registers" WHERE "registers"."roll" = $1 AND ("registers"."id" != $2) LIMIT $3[0m  [["roll", 1], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (2.6ms)[0m  [1m[33mUPDATE "registers" SET "grade" = $1, "updated_at" = $2 WHERE "registers"."id" = $3[0m  [["grade", "Affgf"], ["updated_at", "2018-06-18 16:38:09.715421"], ["id", 1]]
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 6.9ms)
+
+
+  
+ActiveRecord::ValueTooLong (PG::StringDataRightTruncation: ERROR:  value too long for type character varying(1)
+: UPDATE "registers" SET "grade" = $1, "updated_at" = $2 WHERE "registers"."id" = $3):
+  
+app/controllers/registers_controller.rb:44:in `block in update'
+app/controllers/registers_controller.rb:43:in `update'
+Started GET "/registers" for 127.0.0.1 at 2018-06-18 22:08:26 +0530
+Processing by RegistersController#index as HTML
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.0ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 55ms (Views: 51.1ms | ActiveRecord: 1.0ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3334474969968141930)[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateUsers (20180618165119)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (79.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (26.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (35.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20180618165119"]]
+  [1m[35m (14.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(3334474969968141930)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-06-18 22:22:33 +0530
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant RegisterController):
+  
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:269:in `const_get'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:269:in `block in constantize'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `each'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `inject'
+activesupport (5.1.6) lib/active_support/inflector/methods.rb:267:in `constantize'
+actionpack (5.1.6) lib/action_dispatch/http/request.rb:85:in `controller_class_for'
+actionpack (5.1.6) lib/action_dispatch/http/request.rb:78:in `controller_class'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:43:in `controller'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:29:in `serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.6) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.6) lib/action_dispatch/routing/route_set.rb:844:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.5) lib/rack/etag.rb:25:in `call'
+rack (2.0.5) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.5) lib/rack/head.rb:12:in `call'
+rack (2.0.5) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.5) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.6) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-06-18 22:23:06 +0530
+Processing by RegistersController#index as HTML
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.9ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (47.6ms)
+Completed 200 OK in 690ms (Views: 667.8ms | ActiveRecord: 14.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-18 22:23:35 +0530
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RegistersController#index as HTML
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.6ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (46.5ms)
+Completed 200 OK in 550ms (Views: 514.4ms | ActiveRecord: 13.4ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-06-18 22:23:45 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (4.8ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (132.0ms)
+Completed 200 OK in 245ms (Views: 186.2ms | ActiveRecord: 9.3ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-06-18 22:23:54 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (14.4ms)
+Completed 200 OK in 86ms (Views: 83.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-06-18 22:24:17 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"akCH1d4SSnz2GnN2RJ3vASdlhG4YRGIZ7JKP62kABn4JQGTvzadJlrxHZvZdlwdJeqHKG280xMru1kAlr+Btcg==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (2.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@test.in"], ["LIMIT", 1]]
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "test@test.in"], ["encrypted_password", "$2a$11$hH4Y7w7MGCNxqdr.slhGKupQVTqkx/0TfhyzWO1v9vckFwYTkpbMi"], ["created_at", "2018-06-18 16:54:17.618614"], ["updated_at", "2018-06-18 16:54:17.618614"]]
+  [1m[35m (17.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = $1, "current_sign_in_at" = $2, "last_sign_in_at" = $3, "current_sign_in_ip" = $4, "last_sign_in_ip" = $5, "updated_at" = $6 WHERE "users"."id" = $7[0m  [["sign_in_count", 1], ["current_sign_in_at", "2018-06-18 16:54:17.645004"], ["last_sign_in_at", "2018-06-18 16:54:17.645004"], ["current_sign_in_ip", "127.0.0.1/32"], ["last_sign_in_ip", "127.0.0.1/32"], ["updated_at", "2018-06-18 16:54:17.647252"], ["id", 1]]
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 386ms (ActiveRecord: 28.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-18 22:24:17 +0530
+Processing by RegistersController#index as HTML
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.1ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 92ms (Views: 86.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-18 22:29:39 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.2ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (40.2ms)
+Completed 200 OK in 191ms (Views: 76.5ms | ActiveRecord: 22.2ms)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2018-06-18 22:29:46 +0530
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/registrations/edit.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 67ms (Views: 59.1ms | ActiveRecord: 1.3ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-06-18 22:29:49 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"ClTBO229rZwkAHU1Rwm5hx7ukHtzddL62M4/TyCSA+JpVCIBfgiudm5dYLVeA1HPQyreDgQFdCnaivCB5nJo7g=="}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 22ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-18 22:29:49 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-18 22:29:49 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (5.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (34.9ms)
+Completed 200 OK in 92ms (Views: 89.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-18 22:30:03 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-18 22:30:03 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 67ms (Views: 64.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-18 22:30:10 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-18 22:30:10 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 65ms (Views: 62.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-06-18 22:30:14 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.2ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 64ms (Views: 61.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-18 22:30:17 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 67ms (Views: 63.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-06-18 22:30:29 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"iA+75lN6Jin9131xizflKmIrZhm6PqEa9giamccvie4YSDsIBXK3I3rO8sZ6hU7RlKdu1I0PshjEWIVY8MDOlw==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@test.in"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "sign_in_count" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["current_sign_in_at", "2018-06-18 17:00:29.907125"], ["sign_in_count", 2], ["updated_at", "2018-06-18 17:00:29.909274"], ["id", 1]]
+  [1m[35m (16.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/registers
+Completed 302 Found in 255ms (ActiveRecord: 19.0ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-18 22:30:29 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (0.8ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 59ms (Views: 49.9ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-06-18 22:30:48 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"WJG6Qx+BD8OwvGiuQXojRPE7IZBCTsXZuxUJ5wYRbL3dA+QRvh4lPMDvCv775/iJ9gmrDUUtXYqqKpIUlBArJg=="}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 15ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-18 22:30:48 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-18 22:30:48 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 68ms (Views: 65.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-18 22:30:51 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 64ms (Views: 60.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/password/new" for 127.0.0.1 at 2018-06-18 22:30:56 +0530
+Processing by Devise::PasswordsController#new as HTML
+  Rendering devise/passwords/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.8ms)
+  Rendered devise/passwords/new.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 62ms (Views: 58.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/password" for 127.0.0.1 at 2018-06-18 22:31:04 +0530
+Processing by Devise::PasswordsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BssjodlcjTYLz+wTbu9rAHko2+LwWngcppKUuRlVtr96FQ6wTCm5qiadgQ7Z883F+JRaMQGcHCgfr3mr5pW+4A==", "user"=>{"email"=>"test@test.in"}, "commit"=>"Send me reset password instructions"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@test.in"], ["LIMIT", 1]]
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."reset_password_token" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["reset_password_token", "a0955551925013bba96948acc6ff66a22438e302928f3cff4e31026b40fbf0a4"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "users" SET "reset_password_token" = $1, "reset_password_sent_at" = $2, "updated_at" = $3 WHERE "users"."id" = $4[0m  [["reset_password_token", "a0955551925013bba96948acc6ff66a22438e302928f3cff4e31026b40fbf0a4"], ["reset_password_sent_at", "2018-06-18 17:01:05.105942"], ["updated_at", "2018-06-18 17:01:05.107327"], ["id", 1]]
+  [1m[35m (16.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering devise/mailer/reset_password_instructions.html.erb
+  Rendered devise/mailer/reset_password_instructions.html.erb (2.1ms)
+Devise::Mailer#reset_password_instructions: processed outbound mail in 812.0ms
+Sent mail to test@test.in (16.5ms)
+Date: Mon, 18 Jun 2018 22:31:06 +0530
+From: please-change-me-at-config-initializers-devise@example.com
+Reply-To: please-change-me-at-config-initializers-devise@example.com
+To: test@test.in
+Message-ID: <5b27e55278cff_1da32c7cebc34018@slokas.mail>
+Subject: Reset password instructions
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Hello test@test.in!</p>
+
+<p>Someone has requested a link to change your password. You can do this through the link below.</p>
+
+<p><a href="http://localhost:3000/users/password/edit?reset_password_token=saSqVuJa1svAcxR9tPAx">Change my password</a></p>
+
+<p>If you didn't request this, please ignore this email.</p>
+<p>Your password won't change until you access the link above and create a new one.</p>
+
+Redirected to http://localhost:3000/users/sign_in
+Completed 302 Found in 1898ms (ActiveRecord: 20.5ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-18 22:31:06 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 62ms (Views: 59.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 19:48:50 +0530
+  [1m[35m (36.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (6.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (200.6ms)
+Completed 200 OK in 1163ms (Views: 1000.4ms | ActiveRecord: 66.9ms)
+
+
+  [1m[36mUser Load (60.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-06-19 19:50:51 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TsTXjkvwtAVb35QOnwhdaZXyMDjLCAD8JFktAFKlypXr1dx2GZjCWZc7sCxHkWuBsz7j3Z2X8IZsvwkaCGGfkg==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (18.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@test.in"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["current_sign_in_at", "2018-06-19 14:20:51.472878"], ["last_sign_in_at", "2018-06-18 17:00:29.907125"], ["sign_in_count", 3], ["updated_at", "2018-06-19 14:20:51.476203"], ["id", 1]]
+  [1m[35m (37.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 409ms (ActiveRecord: 57.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-19 19:50:51 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (10.2ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (48.1ms)
+Completed 200 OK in 166ms (Views: 124.7ms | ActiveRecord: 20.3ms)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2018-06-19 19:50:55 +0530
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/registrations/edit.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 73ms (Views: 65.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-19 19:51:06 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.0ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 62ms (Views: 50.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/registers/1" for 127.0.0.1 at 2018-06-19 19:51:12 +0530
+Processing by RegistersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRegister Load (0.8ms)[0m  [1m[34mSELECT  "registers".* FROM "registers" WHERE "registers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/show.html.erb within layouts/application
+  Rendered registers/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 80ms (Views: 48.9ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-19 19:51:14 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (0.9ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 58ms (Views: 47.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/registers/new" for 127.0.0.1 at 2018-06-19 19:51:17 +0530
+Processing by RegistersController#new as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/new.html.erb within layouts/application
+  Rendered registers/_form.html.erb (18.1ms)
+  Rendered registers/new.html.erb within layouts/application (21.5ms)
+Completed 200 OK in 90ms (Views: 69.3ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/registers" for 127.0.0.1 at 2018-06-19 19:51:28 +0530
+Processing by RegistersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kN6KndFrWkVeoZ/3JKCUzUg2z3Z+ZxYXriSt37PbLbx/xjmE9SneUvtg1zX14FKuNE3zbsql0STp0jR5xsRRuQ==", "register"=>{"roll"=>"2", "name"=>"two", "grade"=>"2", "std"=>"2"}, "commit"=>"Create Register"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRegister Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "registers" WHERE "registers"."roll" = $1 LIMIT $2[0m  [["roll", 2], ["LIMIT", 1]]
+  [1m[35mSQL (15.4ms)[0m  [1m[32mINSERT INTO "registers" ("roll", "name", "grade", "std", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["roll", 2], ["name", "two"], ["grade", "2"], ["std", 2], ["created_at", "2018-06-19 14:21:28.180938"], ["updated_at", "2018-06-19 14:21:28.180938"]]
+  [1m[35m (19.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/registers/2
+Completed 302 Found in 91ms (ActiveRecord: 37.5ms)
+
+
+Started GET "/registers/2" for 127.0.0.1 at 2018-06-19 19:51:28 +0530
+Processing by RegistersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRegister Load (0.9ms)[0m  [1m[34mSELECT  "registers".* FROM "registers" WHERE "registers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering registers/show.html.erb within layouts/application
+  Rendered registers/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 56ms (Views: 46.7ms | ActiveRecord: 1.9ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-06-19 19:51:33 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"29NpAvlXmAohYSP0gUfDBfhI+4F/EeeBk4s/GMjakQECqFnaK32Zkr/QjqM6Yd+fvSTU78owXaTmWWkx3w82WQ=="}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 33ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-19 19:51:33 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 19:51:33 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 93ms (Views: 89.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-19 19:51:40 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 19:51:40 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 66ms (Views: 62.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-19 19:51:47 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 19:51:47 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 76ms (Views: 73.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/registers/2" for 127.0.0.1 at 2018-06-19 19:51:50 +0530
+Processing by RegistersController#show as HTML
+  Parameters: {"id"=>"2"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/registers/2/edit" for 127.0.0.1 at 2018-06-19 19:52:07 +0530
+Processing by RegistersController#edit as HTML
+  Parameters: {"id"=>"2"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 19:52:07 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.1ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 63ms (Views: 60.4ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (338.0ms)[0m  [1m[33mUPDATE "users" SET "encrypted_password" = $1, "reset_password_token" = $2, "reset_password_sent_at" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["encrypted_password", "$2a$11$RFrBzM7rNLZ9NxAu/P57VuCi5pzia2nqA4J.Qu9ajX7b3iht01S6O"], ["reset_password_token", nil], ["reset_password_sent_at", nil], ["updated_at", "2018-06-19 14:43:34.800967"], ["id", 1]]
+  [1m[35m (18.1ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-06-19 20:19:24 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lFnGP0x64u887alkW9oo1x0LP3TOHlgbXiCtFK9p2vzz9IJW841IAIf0+5pc+MuHyfyzM6g2+OAN7ft3HLVC/g==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@test.in"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["current_sign_in_at", "2018-06-19 14:49:24.602378"], ["last_sign_in_at", "2018-06-19 14:20:51.472878"], ["sign_in_count", 4], ["updated_at", "2018-06-19 14:49:24.604737"], ["id", 1]]
+  [1m[35m (14.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/registers/2/edit
+Completed 302 Found in 235ms (ActiveRecord: 17.9ms)
+
+
+Started GET "/registers/2/edit" for 127.0.0.1 at 2018-06-19 20:19:24 +0530
+Processing by RegistersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRegister Load (0.8ms)[0m  [1m[34mSELECT  "registers".* FROM "registers" WHERE "registers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering registers/edit.html.erb within layouts/application
+  Rendered registers/_form.html.erb (8.0ms)
+  Rendered registers/edit.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 67ms (Views: 58.1ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-06-19 20:19:28 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"0bWhR5Xui+nobtOO/ITXuWxWe+f7typLcyPNYjco+2F99v+w5a+synp4f07spcJQ6sPhvFHYxLFQiviHQOHzkQ=="}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 17ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-19 20:19:28 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 20:19:28 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 62ms (Views: 59.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-06-19 20:19:44 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"g4rBOAAT2mujHk/tL661SuyEMZdCQEKsvOQi1HaTzwUruHSR8/4EQAIOIRaq61kvvVMJUMkw5qWEIzUsc5fsIA==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@test.in"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 204ms (ActiveRecord: 1.5ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"g4rBOAAT2mujHk/tL661SuyEMZdCQEKsvOQi1HaTzwUruHSR8/4EQAIOIRaq61kvvVMJUMkw5qWEIzUsc5fsIA==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 259ms (Views: 61.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-06-19 20:19:49 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qcss978PeDi5iHa+Tuhxk9YJRdHOKXo0fvFYtRXLT+QB+ZleTOKmExiYGEXLrZ32h959FkVZ3j1GNk9NEM9swQ==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "test@test.in"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = $1, "last_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = $5[0m  [["current_sign_in_at", "2018-06-19 14:49:49.635786"], ["last_sign_in_at", "2018-06-19 14:49:24.602378"], ["sign_in_count", 5], ["updated_at", "2018-06-19 14:49:49.638205"], ["id", 1]]
+  [1m[35m (13.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 236ms (ActiveRecord: 17.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-19 20:19:49 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.0ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 65ms (Views: 56.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2018-06-19 20:19:52 +0530
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/registrations/edit.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 65ms (Views: 57.7ms | ActiveRecord: 1.3ms)
+
+
+Started PUT "/users" for 127.0.0.1 at 2018-06-19 20:20:29 +0530
+Processing by Devise::RegistrationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IJ25Ou8cLmxMRY/1o25gx4xojn4PXOtKANpLIAxN05elgawRVuVwAA8X47bw9jpfNF2Wsnd97DQtE6s8v440SQ==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "current_password"=>"[FILTERED]"}, "commit"=>"Update"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "users" SET "encrypted_password" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["encrypted_password", "$2a$11$Mui.wyqBCw2v.d5kc89jCOIR4wf9AN.RQRP8RrhCr6O2V8P.RrmSi"], ["updated_at", "2018-06-19 14:50:29.556253"], ["id", 1]]
+  [1m[35m (44.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 478ms (ActiveRecord: 48.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-19 20:20:29 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.1ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 68ms (Views: 60.3ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-06-19 20:20:32 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"2iEbSx7z8dueY0r11pV5+DOBhtrKu2jNXz62Akieupbct+u9O9h4L9s1y1XdRCuzc9rk6ofNgMIT+bgr9+DiUA=="}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 30ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-06-19 20:20:32 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 20:20:32 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 60ms (Views: 57.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2018-06-19 20:33:33 +0530
+  
+ActiveRecord::NoDatabaseError (FATAL:  database "localhost" does not exist
+):
+  
+activerecord (5.1.6) lib/active_record/connection_adapters/postgresql_adapter.rb:701:in `rescue in connect'
+activerecord (5.1.6) lib/active_record/connection_adapters/postgresql_adapter.rb:697:in `connect'
+activerecord (5.1.6) lib/active_record/connection_adapters/postgresql_adapter.rb:221:in `initialize'
+activerecord (5.1.6) lib/active_record/connection_adapters/postgresql_adapter.rb:38:in `new'
+activerecord (5.1.6) lib/active_record/connection_adapters/postgresql_adapter.rb:38:in `postgresql_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:759:in `new_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:803:in `checkout_new_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:782:in `try_to_checkout_new_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:743:in `acquire_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:500:in `checkout'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:374:in `connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:931:in `retrieve_connection'
+activerecord (5.1.6) lib/active_record/connection_handling.rb:116:in `retrieve_connection'
+activerecord (5.1.6) lib/active_record/connection_handling.rb:88:in `connection'
+activerecord (5.1.6) lib/active_record/migration.rb:562:in `connection'
+activerecord (5.1.6) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  [1m[35m (11.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "localhost"[0m
+  [1m[35m (195.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "school_register_test"[0m
+  [1m[35m (855.4ms)[0m  [1m[35mCREATE DATABASE "localhost" ENCODING = 'unicode'[0m
+  [1m[35m (504.9ms)[0m  [1m[35mCREATE DATABASE "school_register_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (8.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "registers" CASCADE[0m
+  [1m[35m (88.1ms)[0m  [1m[35mCREATE TABLE "registers" ("id" bigserial primary key, "roll" integer, "name" character varying, "grade" character varying(1), "std" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (41.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_registers_on_roll" ON "registers"  ("roll")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (92.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (44.1ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (43.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (81.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20180618165119)[0m
+  [1m[35m (7.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20180618162417);
+
+[0m
+  [1m[35m (83.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-06-19 15:08:48.719351"], ["updated_at", "2018-06-19 15:08:48.719351"]]
+  [1m[35m (8.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "registers" CASCADE[0m
+  [1m[35m (87.9ms)[0m  [1m[35mCREATE TABLE "registers" ("id" bigserial primary key, "roll" integer, "name" character varying, "grade" character varying(1), "std" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (48.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_registers_on_roll" ON "registers"  ("roll")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (85.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (43.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (44.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35m (79.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (11.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20180618165119)[0m
+  [1m[35m (7.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20180618162417);
+
+[0m
+  [1m[35m (63.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-06-19 15:08:49.333293"], ["updated_at", "2018-06-19 15:08:49.333293"]]
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2018-06-19 15:08:49.347155"], ["key", "environment"]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 20:39:08 +0530
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (139.7ms)
+Completed 200 OK in 831ms (Views: 750.2ms | ActiveRecord: 12.2ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-06-19 20:46:03 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.3ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 133ms (Views: 80.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-19 20:46:15 +0530
+Processing by RegistersController#index as HTML
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-06-19 20:46:15 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (3.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 75ms (Views: 72.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-06-19 20:46:19 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (6.1ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 116ms (Views: 113.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-06-19 20:46:29 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"azXHD9PYY3ZykL5sr4AHUxr3ZVYUvm5CMQYB5SQUz3WHy+2P3Pwq3uY0wO3cEn4BLT52tR5IzeGWTnKBzm+hQQ==", "user"=>{"email"=>"test@test.in", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (2.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@test.in"], ["LIMIT", 1]]
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "test@test.in"], ["encrypted_password", "$2a$11$0e9JnksQruhHS.LT2dzK5O2ZrMvlTGG558fFnr/w0uBib5wyiwy6a"], ["created_at", "2018-06-19 15:16:29.257908"], ["updated_at", "2018-06-19 15:16:29.257908"]]
+  [1m[35m (14.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[33mUPDATE "users" SET "sign_in_count" = $1, "current_sign_in_at" = $2, "last_sign_in_at" = $3, "current_sign_in_ip" = $4, "last_sign_in_ip" = $5, "updated_at" = $6 WHERE "users"."id" = $7[0m  [["sign_in_count", 1], ["current_sign_in_at", "2018-06-19 15:16:29.284855"], ["last_sign_in_at", "2018-06-19 15:16:29.284855"], ["current_sign_in_ip", "127.0.0.1/32"], ["last_sign_in_ip", "127.0.0.1/32"], ["updated_at", "2018-06-19 15:16:29.287267"], ["id", 1]]
+  [1m[35m (10.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/registers
+Completed 302 Found in 312ms (ActiveRecord: 31.6ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-19 20:46:29 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.6ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (16.5ms)
+Completed 200 OK in 121ms (Views: 94.1ms | ActiveRecord: 8.9ms)
+
+
+Started GET "/registers/new" for 127.0.0.1 at 2018-06-19 20:46:32 +0530
+Processing by RegistersController#new as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/new.html.erb within layouts/application
+  Rendered registers/_form.html.erb (9.9ms)
+  Rendered registers/new.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 88ms (Views: 56.2ms | ActiveRecord: 5.3ms)
+
+
+Started POST "/registers" for 127.0.0.1 at 2018-06-19 20:46:43 +0530
+Processing by RegistersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MNxmDgznd0FmDkTdccfcBSa3XFK5oNj39WAiBIRcYSJeXdrMz9nfK/4+FjPFqXWpD+A+thUzE++cI/h6QSRJ0A==", "register"=>{"roll"=>"1", "name"=>"one", "grade"=>"1", "std"=>"1"}, "commit"=>"Create Register"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRegister Exists (1.6ms)[0m  [1m[34mSELECT  1 AS one FROM "registers" WHERE "registers"."roll" = $1 LIMIT $2[0m  [["roll", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "registers" ("roll", "name", "grade", "std", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["roll", 1], ["name", "one"], ["grade", "1"], ["std", 1], ["created_at", "2018-06-19 15:16:43.738554"], ["updated_at", "2018-06-19 15:16:43.738554"]]
+  [1m[35m (46.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/registers/1
+Completed 302 Found in 70ms (ActiveRecord: 50.9ms)
+
+
+Started GET "/registers/1" for 127.0.0.1 at 2018-06-19 20:46:43 +0530
+Processing by RegistersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRegister Load (0.9ms)[0m  [1m[34mSELECT  "registers".* FROM "registers" WHERE "registers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/show.html.erb within layouts/application
+  Rendered registers/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 67ms (Views: 49.3ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/registers" for 127.0.0.1 at 2018-06-19 20:46:49 +0530
+Processing by RegistersController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering registers/index.html.erb within layouts/application
+  [1m[36mRegister Load (1.1ms)[0m  [1m[34mSELECT "registers".* FROM "registers"[0m
+  Rendered registers/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 62ms (Views: 52.0ms | ActiveRecord: 2.4ms)
+
+

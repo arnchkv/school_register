@@ -27,5 +27,5 @@ Things you may want to cover:
 # school_register
 This a simple school register.
 This is new initiative.
->>>>>>> 24a00452d77f360cf2b9c28b7007840e5c7b1ffc
+>>>>>>>
 # school_register
