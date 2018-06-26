@@ -4,7 +4,11 @@ class RegistersController < ApplicationController
   # GET /registers
   # GET /registers.json
   def index
-    @registers = Register.all
+    # @registers = Register.all
+    @registers = Register.where(user_id: current_user.id)
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~ BEFORE AUTHORIZE."
+    authorize @registers
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~ AFTER AUTHORIZE."
   end
 
   # GET /registers/1
@@ -15,6 +19,7 @@ class RegistersController < ApplicationController
   # GET /registers/new
   def new
     @register = Register.new
+    authorize @register
   end
 
   # GET /registers/1/edit
@@ -25,6 +30,8 @@ class RegistersController < ApplicationController
   # POST /registers.json
   def create
     @register = Register.new(register_params)
+    @register.user = current_user
+    authorize @register
 
     respond_to do |format|
       if @register.save
@@ -65,6 +72,7 @@ class RegistersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_register
       @register = Register.find(params[:id])
+      authorize @register
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
